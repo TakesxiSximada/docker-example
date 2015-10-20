@@ -1,2 +1,10 @@
-lb:
-  image: nginx:latest
+dbmv:
+  image: mysql:latest
+  environment:
+    MYSQL_ROOT_PASSWORD: toor
+awmv:
+  image: wordpress:latest
+  ports:
+    - "8080:80"
+  links:
+    - dbmv:mysql
