@@ -1,0 +1,3 @@
+[submodule "djangoexample"]
+	path = djangoexample
+	url = git@github.com:TakesxiSximada/djangoexample.git
