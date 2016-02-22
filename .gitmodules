@@ -1,3 +1,6 @@
 [submodule "djangoexample"]
 	path = djangoexample
 	url = git@github.com:TakesxiSximada/djangoexample.git
+[submodule "spoiload"]
+	path = spoiload
+	url = git@bitbucket.org:takesxi_sximada/spoiload.git
