@@ -1,10 +1,69 @@
-dbmv:
-  image: mysql:latest
-  environment:
-    MYSQL_ROOT_PASSWORD: toor
-awmv:
-  image: wordpress:latest
-  ports:
-    - "8080:80"
+nginx:
+  image: nginx:latest
+  volumes_from:
+    - volume-nginx
   links:
-    - dbmv:mysql
+    - web:web.internal
+    - flower:flower.internal
+
+web:
+  build: .
+  volumes_from:
+    - volume-app
+  links:
+    - mysql:mysql.internal
+    - redis:redis.internal
+
+worker:
+  build: .
+  volumes_from:
+    - volume-app
+  links:
+    - mysql:mysql.internal
+    - redis:redis.internal
+
+flower:
+  build: .
+  volumes_from:
+    - volume-app
+  links:
+    - mysql:mysql.internal
+    - redis:redis.internal
+
+rundeck:
+  image: jordan/rundeck:latest
+
+elasticsearch:
+  image: elasticsearch:latest
+
+mongodb:
+  image: mongodb:latest
+
+postgresql:
+  image: postgres:latest
+
+fluentd:
+  image: fluent/fluentd:latest
+
+logstash:
+  image: logstash:latest
+
+rabbitmq:
+  image: rabbitmq:latest
+
+redis:
+  image: busybox:latest
+
+mysql:
+  image: mysql:latest
+  volumes_from:
+    - volume-mysql
+
+volume-nginx:
+  image: busybox:latest
+
+volume-mysql:
+  image: busybox:latest
+
+volume-app:
+  image: busybox:latest
