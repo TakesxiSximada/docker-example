@@ -1,0 +1,4 @@
+.PHONY:
+
+all:
+	echo "OK"
