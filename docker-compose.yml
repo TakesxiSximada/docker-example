@@ -1,34 +1,18 @@
+djangexample:
+  build: djangoexample
+  env_file:
+    - databag/common.env
+    - databag/celery.env
+    - databag/mysql.env
+    - databag/develop.env
+
+spoiload:
+  build: spoiload
+
 nginx:
   image: nginx:latest
   volumes_from:
     - volume-nginx
-  links:
-    - web:web.internal
-    - flower:flower.internal
-
-web:
-  build: .
-  volumes_from:
-    - volume-app
-  links:
-    - mysql:mysql.internal
-    - redis:redis.internal
-
-worker:
-  build: .
-  volumes_from:
-    - volume-app
-  links:
-    - mysql:mysql.internal
-    - redis:redis.internal
-
-flower:
-  build: .
-  volumes_from:
-    - volume-app
-  links:
-    - mysql:mysql.internal
-    - redis:redis.internal
 
 rundeck:
   image: jordan/rundeck:latest
@@ -37,7 +21,7 @@ elasticsearch:
   image: elasticsearch:latest
 
 mongodb:
-  image: mongodb:latest
+  image: mongo:latest
 
 postgresql:
   image: postgres:latest
@@ -58,6 +42,16 @@ mysql:
   image: mysql:latest
   volumes_from:
     - volume-mysql
+
+fake-s3:
+  image: lphoward/fake-s3:latest
+  volumes_from:
+    - volume-fake-s3
+
+volume-fake-s3:
+  image: busybox:latest
+  volumes:
+    - /var/lib/sximada/fake-s3/fakes3_root:/fakes3_root
 
 volume-nginx:
   image: busybox:latest
