@@ -4,3 +4,6 @@
 [submodule "spoiload"]
 	path = spoiload
 	url = git@bitbucket.org:takesxi_sximada/spoiload.git
+[submodule "dropsaws"]
+	path = dropsaws
+	url = git@github.com:TakesxiSximada/dropsaws.git
