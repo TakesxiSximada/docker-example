@@ -61,3 +61,7 @@ volume-mysql:
 
 volume-app:
   image: busybox:latest
+
+volume-djangoexample:
+  image: busybox:latest
+    - /var/lib/sximada/djangoexample/srv/sximada/djangoexample/src:/srv/sximada/djangoexample/src

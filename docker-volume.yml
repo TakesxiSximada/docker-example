@@ -1,0 +1,19 @@
+volumes:
+  djangoexmaple-src:
+    hostpath: ${here}/djangoexample
+    vboxpath: /var/lib/sximada/djangoexample
+
+  fake-s3:
+    hostpath: ${here}/volumes/fake-s3
+    vboxpath: /var/lib/sximada/fake-s3
+    directory:
+      - ${here}/volumes/fake-s3/fakes3_root
+
+  # nginx:
+  #   hostpath: ${here}/volumes/nginx
+  #   vboxpath: /var/lib/sximada/docker-example/nginx
+  #   uid: 104
+  #   gid: 107
+  #   directory:
+  #     - ${here}/volumes/nginx/etc/nginx/conf.d
+  #     - ${here}/volumes/nginx/etc/ssl/private
